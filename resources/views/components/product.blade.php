@@ -2,7 +2,7 @@
 
 <div class="group relative">
       <a href="/products/{{$id}}">
-        <div class="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80 relative">
+        <div class="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-auto relative">
           <img
             src="/{{$image}}"
             alt="{{$name}}"

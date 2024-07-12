@@ -15,15 +15,15 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::orderBy('created_at', 'desc')->get();
+        $products = Product::orderBy('created_at', 'desc')->paginate(25);
 
 
-        if(request()->has('search')){
-           
-           $products = Product::where('name', 'like', '%'. request()->get('search', '').'%')->get();
+        if (request()->has('search')) {
 
-            
-            
+            $products = Product::where('name', 'like', '%' . request()->get('search', '') . '%')
+                ->orwhere('description', 'like', '%' . request()->get('search') . '%')
+                ->orwhere('category', 'like', '%' . request()->get('search') . '%')
+                ->paginate(25);
         }
 
 
@@ -34,7 +34,7 @@ class ProductController extends Controller
     public function show($id)
     {
 
-       
+
 
         $product = Product::findorFail($id);
 
@@ -75,10 +75,11 @@ class ProductController extends Controller
             $averageRating = 0;
         }
 
+        $relatedProducts = Product::where('category', $product->category)->wherenot('name', $product->name)->paginate(4);
 
 
 
-        return view('products.show', ['product' => $product, 'firstImage' => $firstImage, 'otherImages' => $otherImages, 'price' => $price, 'averageRating' => $averageRating, 'reviews' => $reviews]);
+        return view('products.show', ['product' => $product, 'firstImage' => $firstImage, 'otherImages' => $otherImages, 'price' => $price, 'averageRating' => $averageRating, 'reviews' => $reviews, 'relatedProducts' => $relatedProducts]);
     }
 
     public function create()

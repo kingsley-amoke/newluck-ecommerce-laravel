@@ -15,7 +15,7 @@ class HomeController extends Controller
 
         $categories = Category::all();
 
-        $products = Product::orderBy('created_at', 'desc')->get();
+        $products = Product::orderBy('created_at', 'desc')->paginate(10);
 
         
 

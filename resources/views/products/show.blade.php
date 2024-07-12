@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\ProductImage;
 use Illuminate\Support\Carbon;
-
+use Illuminate\Support\Number;
 
 $rating = 0;
 
-if(isset($_GET['rate'])){
+if (isset($_GET['rate'])) {
 
     $rating = htmlspecialchars($_GET["rate"]);
 }
@@ -114,7 +115,7 @@ if(isset($_GET['rate'])){
                             </form>
                         </div>
                         <div class="border border-slate-500 p-2 rounded-sm">
-                        <form method="GET" action="/products/{{$product->id}}">
+                            <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="2" name="rate">
                                 <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 1),
@@ -124,7 +125,7 @@ if(isset($_GET['rate'])){
                             </form>
                         </div>
                         <div class="border border-slate-500 p-2 rounded-sm">
-                        <form method="GET" action="/products/{{$product->id}}">
+                            <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="3" name="rate">
                                 <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 2),
@@ -134,7 +135,7 @@ if(isset($_GET['rate'])){
                             </form>
                         </div>
                         <div class="border border-slate-500 p-2 rounded-sm">
-                        <form method="GET" action="/products/{{$product->id}}">
+                            <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="4" name="rate">
                                 <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 3),
@@ -144,7 +145,7 @@ if(isset($_GET['rate'])){
                             </form>
                         </div>
                         <div class="border border-slate-500 p-2 rounded-sm">
-                        <form method="GET" action="/products/{{$product->id}}">
+                            <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="5" name="rate">
                                 <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating == 5),
@@ -185,7 +186,7 @@ if(isset($_GET['rate'])){
                         <p>
 
                             @for($i=0; $i < $review->rating; $i++) <i class="fa-solid fa-star text-green-400 sm"></i>
-                            @endfor
+                                @endfor
                         </p>
                         <?php
 
@@ -194,7 +195,7 @@ if(isset($_GET['rate'])){
                         ?>
                         <p>{{$timeAgo}}</p>
 
-</div>
+                    </div>
                     <p class="font-bold">user</p>
                     <p class="text-base font-semi-bold">{{$review->review}}</p>
 
@@ -202,7 +203,32 @@ if(isset($_GET['rate'])){
                 </div>
                 @endforeach
 
-                {{$reviews->links()}}
+                <div class="w-full flex justify-center items-center">
+                    <div class="w-2/3 my-5">
+
+                        {{$reviews->links()}}
+                    </div>
+
+                </div>
+
+                <div class="mt-20">
+                    <h3 class="font-bold text-2xl">Related products</h3>
+                    <div class="h-[20rem]">
+                        <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                            @foreach($relatedProducts as $product)
+                            <?php
+
+                            $productImage = ProductImage::where('product_id', $product->id)->get();
+
+                            $image = $productImage[0];
+
+                            $price = Number::currency($product->price, 'NGN');
+                            ?>
+                            <x-product name="{{$product->name}}" price="{{$price}}" quantity="{{$product->quantity}}" category="{{$product->category}}" image="{{$image->image}}" id="{{$product->id}}" />
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

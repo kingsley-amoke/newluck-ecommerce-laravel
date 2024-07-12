@@ -25,10 +25,10 @@ class CategoryController extends Controller
 
         $category = Category::findorFail($id);
        
-        $products = Product::where('category', $category->name)->get();
+        $products = Product::where('category', $category->name)->orderBy('created_at', 'desc')->paginate(25);
  
 
-        return view('categories.show', ['products' => $products]);
+        return view('categories.show', ['products' => $products, 'category' => $category]);
     }
 
     public function create(){
