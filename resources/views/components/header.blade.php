@@ -23,10 +23,8 @@ $categories = Category::all()
 
         <div class="flex justify-center items-center gap-5">
 
-        <a href="#">
-            <i class="fa-solid fa-search"></i>
+            @include('layout.shared.search')
           
-        </a>
 
         <a href="#">
 

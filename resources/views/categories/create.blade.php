@@ -5,7 +5,7 @@
 @section('content')
 <div class="w-full flex flex-col justify-center items-center my-20">
     <h3 class="font-bold text-2xl my-5">Add Category</h3>
-    <form action="/categories/create" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5 border border-slate-500 p-5">
+    <form action="{{route('categories.create')}}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5 border border-slate-500 p-5">
         @csrf
         <label for="name" class="font-bold">
             Category Name

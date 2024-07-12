@@ -202,6 +202,8 @@ if(isset($_GET['rate'])){
                 </div>
                 @endforeach
 
+                {{$reviews->links()}}
+
             </div>
         </div>
     </div>

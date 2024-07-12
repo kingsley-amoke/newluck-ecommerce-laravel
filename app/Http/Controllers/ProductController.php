@@ -8,14 +8,23 @@ use App\Models\ProductImage;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
+use Spatie\Searchable\Search;
 
 class ProductController extends Controller
 {
     public function index()
     {
 
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->get();
 
+
+        if(request()->has('search')){
+           
+           $products = Product::where('name', 'like', '%'. request()->get('search', '').'%')->get();
+
+            
+            
+        }
 
 
 
@@ -24,6 +33,8 @@ class ProductController extends Controller
 
     public function show($id)
     {
+
+       
 
         $product = Product::findorFail($id);
 
@@ -45,19 +56,21 @@ class ProductController extends Controller
 
 
 
-        $reviews = Review::where('product_id', $id)->get();
+        $reviews = Review::where('product_id', $id)->paginate(5);
 
-        if (count($reviews) > 0) {
+        $allReviews = Review::where('product_id', $id)->get();
+
+        if (count($allReviews) > 0) {
 
             $total = 0;
 
-            foreach ($reviews as $review) {
+            foreach ($allReviews as $review) {
 
                 $total += $review->rating;
             }
 
 
-            $averageRating = $total / count($reviews);
+            $averageRating = $total / count($allReviews);
         } else {
             $averageRating = 0;
         }
