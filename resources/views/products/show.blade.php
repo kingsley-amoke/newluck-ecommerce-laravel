@@ -105,7 +105,7 @@ if (isset($_GET['rate'])) {
 
                         <div class="border border-slate-500 p-2 rounded-sm }">
 
-                            <form method="GET" action="/products/{{$product->id}}">
+                            <form method="GET" action="{{route('products.show', $product->id)}}">
                                 @csrf
                                 <input type="hidden" value="1" name="rate">
                                 <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 0),
@@ -157,8 +157,9 @@ if (isset($_GET['rate'])) {
                     </div>
                 </div>
             </div>
+            @if(Auth::user())
             <div class="my-10">
-                <form action="/products/{{$product->id}}/review" method="POST" class="h-32 my-10 border border-slate-400 dark:border-none rounded-md">
+                <form action="{{route('product.review', $product->id)}}" method="POST" class="h-32 my-10 border border-slate-400 dark:border-none rounded-md">
                     @csrf
 
                     <input type="hidden" value="{{$rating}}" name="rating" id="rating">
@@ -176,6 +177,11 @@ if (isset($_GET['rate'])) {
 
                 </form>
             </div>
+            @else
+            <div class="w-full my-2">
+                <p class="text-center font-semibold text-xl">Please <a href="{{route('login')}}" class="text-blue-300">login</a> to submit review for this product</p>
+            </div>
+            @endif
 
             <div class="my-20">
 

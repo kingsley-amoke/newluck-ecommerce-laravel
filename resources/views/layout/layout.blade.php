@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>NewLuck</title>
+        <title>{{ config('app.name', 'NewLuck') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -12,11 +12,16 @@
         <link rel="stylesheet" href="{{asset('fontawesome-web/css/all.min.css')}}" />
 
         <!-- Styles -->
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <link href="{{asset('css/app.css')}}" rel="stylesheet">
+
+        <script src="{{asset('js/app.js')}}" ></script>
+
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <header class="w-full border border-b-slate-300 border-x-0 border-t-0">
-            <x-header />
+            @include('layout.shared.navigation')
         </header>
         <div>
 

@@ -2,18 +2,15 @@
 
 use App\Models\Category;
 
-$categories = Category::all()
+$categories = Category::all();
+
 
     ?>
 
+
+
 <div class="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl my-5 ">
-        <a href='/'>
-          <h1 class="text-3xl md:text-5xl font-extrabold font-mono text-blue-400">
-            New<span class="text-red-600 font-serif font-thin text-xl">
-              Luck
-            </span>
-          </h1>
-        </a>
+        <x-application-logo />
 
         <nav class="hidden gap-12 lg:flex 2xl:ml-16">
           @foreach($categories as $item)
@@ -21,21 +18,20 @@ $categories = Category::all()
           @endforeach
         </nav>
 
-        <div class="flex justify-center items-center gap-5">
+        <div class="flex justify-center items-center gap-5" id="cart">
 
             @include('layout.shared.search')
           
 
-        <a href="#">
 
-            <i class="fa-regular fa-user"></i>
-
-        </a>
+              <i class="fa-regular fa-user"></i>
+          
 
         <a href="#">
 
-
-            <i class="fa-solid fa-cart-shopping"></i>
+         
+              <i class="fa-solid fa-cart-shopping"></i>
+         
         </a>
         <!-- <x-button title="Clicl here" to="/pizzas"/> -->
         </div>

@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -47,6 +47,6 @@ Route::get('product-image/{productImageId}/delete', [ProductImageController::cla
 
 //reviews and ratings
 
-Route::post('products/{productId}/review', [ReviewController::class, 'store'])->middleware(['auth', 'verified']);
+Route::post('products/{productId}/review', [ReviewController::class, 'store'])->middleware(['auth', 'verified'])->name('product.review');
 
 require __DIR__.'/auth.php';
