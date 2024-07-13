@@ -163,6 +163,7 @@ if (isset($_GET['rate'])) {
                     @csrf
 
                     <input type="hidden" value="{{$rating}}" name="rating" id="rating">
+                    <input type="hidden" value="{{Auth::user()->name}}" name="user" id="user">
 
                     <div class="flex w-full h-full">
                         <textarea placeholder="Review" name="review" id="review" class="text-black p-2 rounded-sm w-full h-full outline-none"></textarea>
@@ -202,7 +203,7 @@ if (isset($_GET['rate'])) {
                         <p>{{$timeAgo}}</p>
 
                     </div>
-                    <p class="font-bold">user</p>
+                    <p class="font-bold">{{$review->user}}</p>
                     <p class="text-base font-semi-bold">{{$review->review}}</p>
 
 

@@ -14,6 +14,7 @@ class ReviewController extends Controller
         $request->validate([
             'rating' => 'required',
             'review' => 'required',
+            'user' => 'required',
         ]);
 
 
@@ -24,6 +25,7 @@ class ReviewController extends Controller
         $reviews->rating = $request->rating;
         $reviews->review = $request->review;
         $reviews->product_id = $product->id;
+        $reviews->user = $request->user;
 
         $reviews->save();
 

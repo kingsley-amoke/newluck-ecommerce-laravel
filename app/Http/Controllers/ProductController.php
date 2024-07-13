@@ -56,7 +56,7 @@ class ProductController extends Controller
 
 
 
-        $reviews = Review::where('product_id', $id)->paginate(5);
+        $reviews = Review::where('product_id', $id)->orderBy('created_at', 'desc')->paginate(5);
 
         $allReviews = Review::where('product_id', $id)->get();
 
