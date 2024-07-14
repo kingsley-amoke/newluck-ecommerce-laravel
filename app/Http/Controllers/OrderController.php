@@ -13,11 +13,16 @@ class OrderController extends Controller
 {
 
     public function index(){
-        return view('orders.index');
+
+        $orders = Order::orderBy('created_at', 'desc')->get();
+
+        return view('orders.index', ['orders' => $orders]);
     }
 
-    public function show(){
-        return view('orders.show');
+    public function show($id){
+
+        $order = Order::findorFail($id);
+        return view('orders.show', ['order' => $order]);
     }
 
     public function store(){
@@ -29,9 +34,10 @@ class OrderController extends Controller
         ];
 
         foreach($cart as $item){
-            $product = ['id' => $item->id, 'quantity' => $item->quantity];
+            $product = ['id' => $item->product_id, 'quantity' => $item->quantity];
 
             array_push($products, $product);
+            $item->delete();
         };
 
         $order = new Order();
@@ -40,6 +46,8 @@ class OrderController extends Controller
        $order->products = $products;
 
        $order->save();
+
+
 
 
         return redirect(route('index'));
