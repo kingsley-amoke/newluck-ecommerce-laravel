@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->string('review');
             $table->foreignId('product_id');
+            $table->string('user');
             $table->timestamps();
         });
     }

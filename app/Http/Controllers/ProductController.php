@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 use Spatie\Searchable\Search;
 
@@ -16,6 +18,12 @@ class ProductController extends Controller
     {
 
         $products = Product::orderBy('created_at', 'desc')->paginate(25);
+        if(Auth::user()){
+
+            $cart = Cart::where('user_id', Auth::user()->id)->get();
+        }else{
+            $cart = [];
+        }
 
 
         if (request()->has('search')) {
@@ -28,7 +36,7 @@ class ProductController extends Controller
 
 
 
-        return view('products.index', ['products' => $products]);
+        return view('products.index', ['products' => $products, 'cart' => $cart]);
     }
 
     public function show($id)

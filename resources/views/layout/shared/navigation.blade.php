@@ -1,8 +1,11 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Cart;
 
 $categories = Category::all();
+$cart = Cart::where('user_id', Auth::user()->id)->get();
+
 
 ?>
 
@@ -77,7 +80,13 @@ $categories = Category::all();
                     </x-slot>
                 </x-dropdown>
                 @if(Auth::user())
-                <i class="fa-solid fa-shopping-cart"></i>
+                <a href="{{route('cart.index')}}" class="relative">
+                    @if($cart)
+                    <p class="absolute -right-2 -top-2 text-red-400 font-bold text-sm">{{count($cart)}}</p>
+                    @endif
+                    
+                    <i class="fa-solid fa-shopping-cart"></i>
+                </a>
                 @endif
             </div>
 

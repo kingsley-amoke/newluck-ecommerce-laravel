@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('admin')->default(0);
-            $table->string('address');
+        Schema::create('cart', function (Blueprint $table) {
+            $table->id();
+           
+            $table->foreignId('user_id');
+            $table->foreignId('product_id');
+            $table->integer('quantity');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('admin');
-        });
+        Schema::dropIfExists('orders');
     }
 };

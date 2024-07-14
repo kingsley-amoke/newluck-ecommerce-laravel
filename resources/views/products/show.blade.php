@@ -58,13 +58,26 @@ if (isset($_GET['rate'])) {
                     <p>{{$product->description}}</p>
                 </div>
                 <div class="flex items-center gap-3">
-                    Qty
-                    <div class="bg-gray-200 py-2 px-4 flex gap-5 items-center text-black">
-                        <i class="fa-solid fa-chevron-left"></i>
-                        {{$product->quantity}}
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </div>
+                    In-Stock (<span class="text-black dark:text-white mx-0 px-0">
+                            {{$product->quantity}}
+                            </span>)  
+                       
+                    
                 </div>
+                @if(Auth::user())
+                <div class="my-10">
+                    <form action="{{route('cart.create', $product->id)}}" method="POST">
+                        @csrf
+                        
+                        <input type="hidden" name="user" id="user" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="product" id="product" value="{{$product->id}}">
+                        <input type="hidden" name="quantity" id="quantity" value="1">                       
+                         <x-primary-button>
+                            Add to cart
+                        </x-primary-button>
+                    </form>
+                </div>
+                @endif
             </div>
         </div>
         <div class="mx-5">

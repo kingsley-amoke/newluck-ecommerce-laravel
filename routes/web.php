@@ -1,17 +1,27 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Models\Cart;
+use App\Models\Pizza;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $cart = Cart::where('user_id', Auth::user()->id)->get();
+
+
+    return view('dashboard',  ['cart' => $cart]);
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -48,5 +58,21 @@ Route::get('product-image/{productImageId}/delete', [ProductImageController::cla
 //reviews and ratings
 
 Route::post('products/{productId}/review', [ReviewController::class, 'store'])->middleware(['auth', 'verified'])->name('product.review');
+
+//cart
+
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/products/{id}', [CartController::class, 'store'])->name('cart.create');
+Route::get('cart/{id}', [CartController::class, 'destroy'])->name('cart.delete');
+Route::post('cart/{id}', [CartController::class, 'increment'])->name('cart.increment');
+Route::post('cart/{id}/add', [CartController::class, 'decrement'])->name('cart.decrement');
+
+//orders
+
+Route::get('orders', [OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders.index');
+Route::get('orders/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified')->name('orders.show');
+Route::post('cart', [OrderController::class, 'store'])->name('orders.create');
+
+
 
 require __DIR__.'/auth.php';

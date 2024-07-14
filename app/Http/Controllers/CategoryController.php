@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -17,8 +19,15 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         $products = Product::all();
+
+        if(Auth::user()){
+
+            $cart = Cart::where('user_id', Auth::user()->id)->get();
+        }else{
+            $cart = [];
+        }
         
-        return view('index', ['categories' => $categories, 'products' => $products]);
+        return view('index', ['categories' => $categories, 'products' => $products, 'cart' => $cart]);
     }
 
     public function show($id){

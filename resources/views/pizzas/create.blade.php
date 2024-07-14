@@ -1,3 +1,11 @@
+
+<?php
+$toppings = [
+    ['id'=> 1, 'qty' => 10],
+    ['id'=> 2, 'qty' => 40],
+];
+?>
+
 @extends('layout.layout')
 
 @section('content')
@@ -20,13 +28,14 @@
                 <option value="beef">Beef</option>
                 <option value="chicken">Chicken</option>
             </select>
-            <fieldset class=" text-white">
+           
+            {{-- <fieldset class=" text-white">
                 <label for="toppings">Extra toppings</label><br/>
                 <input type="checkbox" name="toppings[]" id="toppings" value="mushroom">Mushroom <br />
                 <input type="checkbox" name="toppings[]" id="toppings" value="veggies">Veggies <br />
                 <input type="checkbox" name="toppings[]" id="toppings" value="coconut">Coconut <br />
                 <input type="checkbox" name="toppings[]" id="toppings" value="candy">Candy <br />
-            </fieldset>
+            </fieldset> --}}
             <input type="submit" value="Add Pizza" class="text-white">
         </form>
     </div>

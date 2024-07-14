@@ -11,6 +11,7 @@ class ProductImageController extends Controller
 {
     public function index($productId){
         $product = Product::findOrFail($productId);
+        
         $productImages = ProductImage::where('product_id',$productId)->get();
         return view('product-image.index', compact('product','productImages'));
     }
