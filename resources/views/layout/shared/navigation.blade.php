@@ -61,6 +61,12 @@ $cart = Cart::where('user_id', Auth::user()->id)->get();
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @if(Auth::user()->admin)
+                        <x-dropdown-link :href="route('dashboard')">
+                            {{__('Admin')}}
+                        </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -106,24 +112,29 @@ $cart = Cart::where('user_id', Auth::user()->id)->get();
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        @if(Auth::user())
+        @if(Auth::user()->admin)
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+
+            <div class="px-4">
+               
+                <div class="font-medium text-base text-gray-800 dark:text-gray-200 capitalize">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+               
+            </div>
         </div>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div class="px-4">
-                @if(Auth::user())
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                @endif
-            </div>
+            
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Edit Profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -138,5 +149,17 @@ $cart = Cart::where('user_id', Auth::user()->id)->get();
                 </form>
             </div>
         </div>
+        @else
+
+        <div class="mt-3 space-y-1">
+            <x-responsive-nav-link :href="route('login')">
+                {{ __('Sign in') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('register')">
+                {{ __('Register') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
     </div>
 </nav>
