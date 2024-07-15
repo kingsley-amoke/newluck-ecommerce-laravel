@@ -41,6 +41,10 @@ class CategoryController extends Controller
     }
 
     public function create(){
+
+        if(!Auth::user()->admin){
+            return redirect()->route('index');
+        }
         return view('categories.create');
     }
 

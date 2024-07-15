@@ -93,6 +93,10 @@ class ProductController extends Controller
     public function create()
     {
 
+        if(!Auth::user()->admin){
+            return redirect()->route('index');
+        }
+
         $categories = Category::all();
 
         return view('products.create', ['categories' => $categories]);

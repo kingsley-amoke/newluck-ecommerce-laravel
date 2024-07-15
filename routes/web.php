@@ -18,10 +18,14 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/dashboard', function () {
 
     $cart = Cart::where('user_id', Auth::user()->id)->get();
+    if (Auth::user()->admin) {
 
 
-    return view('dashboard',  ['cart' => $cart]);
 
+        return view('dashboard',  ['cart' => $cart]);
+    } else {
+        return redirect()->route('index');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -72,7 +76,8 @@ Route::post('cart/{id}/add', [CartController::class, 'decrement'])->name('cart.d
 Route::get('orders', [OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders.index');
 Route::get('orders/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified')->name('orders.show');
 Route::post('cart', [OrderController::class, 'store'])->name('orders.create');
+Route::post('orders/{id}', [OrderController::class, 'destroy'])->middleware('auth', 'verified')->name('orders.delete');
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

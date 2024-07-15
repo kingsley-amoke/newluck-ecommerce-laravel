@@ -4,6 +4,8 @@ use App\Models\Category;
 use App\Models\Cart;
 
 $categories = Category::all();
+
+if(Auth::user())
 $cart = Cart::where('user_id', Auth::user()->id)->get();
 
 

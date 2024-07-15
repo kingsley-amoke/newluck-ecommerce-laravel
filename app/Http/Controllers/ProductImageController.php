@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProductImageController extends Controller
 {
     public function index($productId){
+
+        if(!Auth::user()->admin){
+            return redirect()->route('index');
+        }
         $product = Product::findOrFail($productId);
         
         $productImages = ProductImage::where('product_id',$productId)->get();

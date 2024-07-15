@@ -14,12 +14,20 @@ class OrderController extends Controller
 
     public function index(){
 
+        if(!Auth::user()->admin){
+            return redirect()->route('index');
+        }
+
         $orders = Order::orderBy('created_at', 'desc')->get();
 
         return view('orders.index', ['orders' => $orders]);
     }
 
     public function show($id){
+
+        if(!Auth::user()->admin){
+            return redirect()->route('index');
+        }
 
         $order = Order::findorFail($id);
         return view('orders.show', ['order' => $order]);
@@ -51,6 +59,15 @@ class OrderController extends Controller
 
 
         return redirect(route('index'));
+    }
+
+    public function destroy($id){
+
+        $order = Order::findorFail($id);
+
+        $order->delete();
+
+        return redirect()->route('orders.index');
     }
     
 }
