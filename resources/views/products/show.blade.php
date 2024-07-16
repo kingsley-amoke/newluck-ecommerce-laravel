@@ -26,11 +26,11 @@ if (isset($_GET['rate'])) {
         <div class="mx-5 lg:mx-50 my-10 flex flex-col lg:flex-row gap-10">
             <div class="w-full md:w-1/2 flex flex-col justify-center items-center">
 
-                <img src="/{{$firstImage}}" class="w-full h-full" width={500} height={500} alt="{{$product->name}}" />
+                <img src="/{{$firstImage}}" class="" alt="{{$product->name}}" />
 
                 <div class="my-10 flex gap-5 overflow-auto">
                     @foreach($otherImages as $image)
-                    <img src="/{{$image->image}}" class="w-full h-full" width={200} height={200} alt="{{$product->name}}" />
+                    <img src="/{{$image->image}}" class="" width={200} height={200} alt="{{$product->name}}" />
                     @endforeach
                 </div>
 
@@ -58,9 +58,13 @@ if (isset($_GET['rate'])) {
                     <p>{{$product->description}}</p>
                 </div>
                 <div class="flex items-center gap-3">
+                    @if($product->quantity > 0)
                     In-Stock (<span class="text-black dark:text-white mx-0 px-0">
                             {{$product->quantity}}
                             </span>)  
+                            @else
+                            <p class="text-red-400 font-bold">Out of Stock</p>
+                            @endif
                        
                     
                 </div>
@@ -76,6 +80,7 @@ if (isset($_GET['rate'])) {
                             Add to cart
                         </x-primary-button>
                     </form>
+                    
                 </div>
                 @endif
             </div>
@@ -86,8 +91,8 @@ if (isset($_GET['rate'])) {
                 here
             </div>
         </div>
-        <div class="mx-5">specs</div>
-        <div class="mx-5">images</div>
+        {{-- <div class="mx-5">specs</div>
+        <div class="mx-5">images</div> --}}
         <div id="reviews" class="mx-5">
             <h4 class="font-semibold my-5">Ratings and Reviews</h4>
             <div class="flex justify-between">

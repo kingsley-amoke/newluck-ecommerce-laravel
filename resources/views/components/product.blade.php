@@ -9,8 +9,19 @@
             class="w-full h-full lg:h-full lg:w-full"
             
           />
-          <div class="absolute top-2 right-2 p-2 text-white bg-black text-sm font-semibold">
-            In-Stock ({{$quantity}})
+          <div class="absolute top-2 right-2 p-2 text-sm font-semibold">
+            @if($quantity > 0)
+            <p class="text-white bg-black ">
+
+              In-Stock ({{$quantity}})
+            </p>
+                          
+            @else
+            <p class="text-red-600 font-bold bg-gray-100">
+              Out-Of-Stock
+
+            </p>
+            @endif
           </div>
         </div>
         <div class="mt-4 flex justify-between">

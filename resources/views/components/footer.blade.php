@@ -19,9 +19,9 @@
             </a>
         </div>
     </div>
-    <div class='lg:border border-b-slate-400 flex flex-col lg:flex-row justify-evenly items-center lg:items-start'>
+    <div class='lg:border border-b-slate-400 flex flex-col lg:flex-row justify-evenly items-start mx-10'>
         <div class='py-2 w-1/2 lg:w-1/5 h-full'>
-            <h3 class='py-2'>Support</h3>
+            <h3 class='py-2 uppercase font-bold'>Support</h3>
             <div class='flex flex-col gap-2'>
                 <p class='text-sm text-gray-400 '>Service Hours:</p>
                 <p class='text-sm'>24/7</p>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class='py-2  w-1/2 lg:w-1/5 h-full'>
-            <h3 class='py-2'>About us</h3>
+            <h3 class='py-2 uppercase font-bold'>About us</h3>
             <div class='flex flex-col gap-2'>
                 <p class='text-sm text-gray-400 '>About us</p>
 
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class='py-2 w-1/2 lg:w-1/5 h-full'>
-            <h3 class='py-2'>Terms</h3>
+            <h3 class='py-2 uppercase font-bold'>Terms</h3>
             <div class='flex flex-col gap-2'>
                 <p class='text-sm text-gray-400 '>Warranty</p>
 
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class='py-2  w-1/2 lg:w-1/5 h-full'>
-            <h3 class='py-2'>Get help</h3>
+            <h3 class='py-2 uppercase font-bold'>Get help</h3>
             <div class='flex flex-col gap-2'>
                 <p class='text-sm text-gray-400 '>Track order</p>
 
