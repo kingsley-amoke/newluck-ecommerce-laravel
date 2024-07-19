@@ -63,6 +63,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->image = 'images/'.$imageName;
+        $category->parent_id = $request->parent_id;
 
         $category->save();
 

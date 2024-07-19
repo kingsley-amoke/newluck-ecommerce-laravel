@@ -3,10 +3,12 @@
 use App\Models\Category;
 use App\Models\Cart;
 
-$categories = Category::all();
+$categories = Category::paginate(5);
 
 if(Auth::user())
 $cart = Cart::where('user_id', Auth::user()->id)->get();
+
+$dash = '--';
 
 
 ?>
@@ -29,6 +31,11 @@ $cart = Cart::where('user_id', Auth::user()->id)->get();
                     <x-nav-link :href="route('categories.show', $category->id)" :active="request()->routeIs('categories.show', $category->id)" class="capitalize">
                         {{$category->name }}
                     </x-nav-link>
+
+                    {{-- <option value="{{$category->id}}">{{$dash}}{{$category->name}}</option>
+                    @if(count($category->subcategory))
+                        @include('subCategoryList-option',['subcategories' => $category->subcategory])
+                    @endif --}}
                 </div>
                 @endforeach
             </div>
@@ -113,6 +120,7 @@ $cart = Cart::where('user_id', Auth::user()->id)->get();
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if(Auth::user())
 
             <div class="px-4">
                
@@ -120,6 +128,7 @@ $cart = Cart::where('user_id', Auth::user()->id)->get();
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                
             </div>
+            @endif
         </div>
 
         <div class="my-5">
