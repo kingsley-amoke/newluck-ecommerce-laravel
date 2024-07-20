@@ -19,7 +19,7 @@
         <input type="number" name="price" id="price" class="outline-none border border-slate-500 rounded-md text-black p-2">
         <label for="quantity" class="font-bold">Quantity</label>
         <input type="number" name="quantity" id="quantity" class="outline-none border border-slate-500 rounded-md text-black p-2">
-        <select name="category" class="outline-none border border-slate-500 rounded-md text-black p-2">
+        <select name="category" class="outline-none border border-slate-500 rounded-md text-black p-2 capitalize">
            
 
             @foreach($categories as $category)

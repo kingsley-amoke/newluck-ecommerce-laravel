@@ -1,4 +1,10 @@
+<?php
 
+use App\Models\Category;
+
+$categories = Category::whereNull('parent_id')->get();
+
+?>
 
 @extends('layout.layout')
 
@@ -13,6 +19,12 @@
         <input type="text" name="name" id="name" class="outline-none border border-slate-500 rounded-md text-black p-2">
         <label for="slug" class="font-bold">Slug</label>
         <input name="slug" id="slug" class="outline-none border border-slate-500 rounded-md text-black p-2">
+        <label for="parent_id" class="font-bold">Choose Parent</label>
+        <select name="parent_id" id="parent_id" class="outline-none border border-slate-500 rounded-md text-black p-2">
+            @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
         <label for="image" class="font-bold">Cover Image</label>
         <input type="file" name="image" id="image">
         <input type="submit" value="Upload" class="border border-slate-400 bg-blue-500 hover:bg-blue-700 uppercase px-3 py-2 font-bold rounded-sm text-white">

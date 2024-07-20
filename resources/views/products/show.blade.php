@@ -75,10 +75,16 @@ if (isset($_GET['rate'])) {
                         
                         <input type="hidden" name="user" id="user" value="{{Auth::user()->id}}">
                         <input type="hidden" name="product" id="product" value="{{$product->id}}">
-                        <input type="hidden" name="quantity" id="quantity" value="1">                       
+                        <input type="hidden" name="quantity" id="quantity" value="1">    
+                        @if($product->quantity > 0)                   
                          <x-primary-button>
                             Add to cart
                         </x-primary-button>
+                        @else
+                        <button class="rounded-md bg-red-600 border border-slate-100 py-2 px-4 " disabled>
+                            <p class="line-through uppercase font-bold text-white">Add to cart</p>
+                        </button>
+                        @endif
                     </form>
                     
                 </div>
@@ -121,57 +127,62 @@ if (isset($_GET['rate'])) {
                     <h5>Rate this product</h5>
                     <div class="flex gap-3 my-5">
 
-                        <div class="border border-slate-500 p-2 rounded-sm }">
-
-                            <form method="GET" action="{{route('products.show', $product->id)}}">
-                                @csrf
-                                <input type="hidden" value="1" name="rate">
-                                <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 0),
+                        
+                        <form method="GET" action="{{route('products.show', $product->id)}}">
+                            @csrf
+                            <input type="hidden" value="1" name="rate">
+                                
+                                <button class="border border-slate-500 p-2 rounded-sm">
+                                    <i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 0),
                                         ])
 
                                         ></i></button>
+                                    
                             </form>
-                        </div>
-                        <div class="border border-slate-500 p-2 rounded-sm">
+                        
                             <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="2" name="rate">
-                                <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 1),
+                                <button class="border border-slate-500 p-2 rounded-sm">
+                                    <i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 1),
                                         ])
 
                                         ></i></button>
                             </form>
-                        </div>
-                        <div class="border border-slate-500 p-2 rounded-sm">
+                       
+                        
                             <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="3" name="rate">
-                                <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 2),
+                                <button class="border border-slate-500 p-2 rounded-sm">
+                                    <i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 2),
                                         ])
 
                                         ></i></button>
                             </form>
-                        </div>
-                        <div class="border border-slate-500 p-2 rounded-sm">
+                        
+                       
                             <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="4" name="rate">
-                                <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 3),
+                                <button class="border border-slate-500 p-2 rounded-sm">
+                                    <i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating > 3),
                                         ])
 
                                         ></i></button>
                             </form>
-                        </div>
-                        <div class="border border-slate-500 p-2 rounded-sm">
+                       
+                        
                             <form method="GET" action="/products/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" value="5" name="rate">
-                                <button><i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating == 5),
+                                <button class="border border-slate-500 p-2 rounded-sm">
+                                    <i @class([ 'fa-solid' , 'fa-star' , 'text-green-400'=> ($rating == 5),
                                         ])
 
-                                        ></i></button>
+                                        ></i>
                             </form>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

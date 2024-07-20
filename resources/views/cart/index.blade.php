@@ -13,7 +13,7 @@ use App\Models\ProductImage;
     <?php
         $product = Product::find($item->product_id);
 
-        $image = ProductImage::find($product->id)->get();
+        $image = ProductImage::where('product_id', $product->id)->get();
 
         $price = Number::currency($product->price, 'NGN');
        

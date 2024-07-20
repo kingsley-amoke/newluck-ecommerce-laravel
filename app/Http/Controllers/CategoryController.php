@@ -11,12 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
 
-    public function getRouteKeyName(){
-        return 'slug';
-    }
     public function index(){
 
-        $categories = Category::all();
+        $categories = Category::tree()->get()->toTree();
 
         $products = Product::all();
 
@@ -52,6 +49,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required',
             'slug' => 'required',
+            'parent_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:2048',
         ]);
 

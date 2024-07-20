@@ -134,6 +134,6 @@ class ProductController extends Controller
     //apis
 
     public function apiIndex(){
-        return Product::all();
+        return Product::paginate(1);
     }
 }

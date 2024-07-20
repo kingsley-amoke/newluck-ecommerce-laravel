@@ -54,6 +54,37 @@ class ProductImageController extends Controller
         return redirect()->back()->with('status', 'Uploaded Successfully');
 }
 
+public function apiStore(Request $request)
+{
+    // $request->validate([
+    //     'images.*' => 'required|image|mimes:png,jpg,jpeg,webp'
+    // ]);
+
+
+    // $imageData = [];
+
+    // if($files = $request->file('images')){
+
+    //     foreach($files as $key => $file){
+
+    //         $extension = $file->getClientOriginalExtension();
+    //         $filename = $key.'-'.time(). '.' .$extension;
+
+    //         $path = "images/test/";
+
+    //         $file->move($path, $filename);
+
+    //         $imageData[] = [
+                
+    //             'image' => $path.$filename,
+    //         ];
+    //     }
+    // }
+
+
+    return ['gt'=>'t'];
+}
+
 public function destroy(int $productImageId)
     {
         $productImage = ProductImage::findOrFail($productImageId);

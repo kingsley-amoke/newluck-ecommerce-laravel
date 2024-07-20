@@ -4,6 +4,7 @@
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\ProductImage;
 
 $user = User::findorFail($order->user_id);
 
@@ -26,12 +27,18 @@ $user = User::findorFail($order->user_id);
 @foreach($order->products as $item)
 <?php
 
-$product = Product::find($item['id'])
+$product = Product::find($item['id']);
+$image = ProductImage::where('product_id', $product->id)->get();
+
 
 ?>
 
 <div class="border border-slate-500 p-5">
     <h4 class="font-bold">Product Infofrmation</h4>
+    <div class="w-full flex justify-center items-center my-5">
+
+        <img src="/{{$image[0]->image}}" alt={{$product->name}} class="w-32 h-32">
+    </div>
     <p>
         Name: {{$product->name}}
         </p>

@@ -19,11 +19,11 @@
         <script src="{{asset('js/app.js')}}" ></script>
 
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased dark:bg-black dark:text-white/50 min-h-screen flex flex-col">
         <header class="w-full border border-b-slate-300 border-x-0 border-t-0">
             @include('layout.shared.navigation')
         </header>
-        <div>
+        <div class="flex-1">
 
             @yield('content')
         </div>

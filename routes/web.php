@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Cart;
 use App\Models\Pizza;
 use Illuminate\Support\Facades\Auth;
@@ -78,13 +79,7 @@ Route::get('orders/{id}', [OrderController::class, 'show'])->middleware('auth', 
 Route::post('cart', [OrderController::class, 'store'])->name('orders.create');
 Route::post('orders/{id}', [OrderController::class, 'destroy'])->middleware('auth', 'verified')->name('orders.delete');
 
-//api routes
 
-Route::get('/api/products', [ProductController::class, 'apiIndex']);
-Route::get('/api/products/{id}', [ProductController::class, 'apiShow']);
-Route::get('/api/categories', [CategoryController::class, 'apiIndex']);
-Route::get('/api/categories/{id}', [CategoryController::class, 'apiShow']);
-Route::get('/api/products/{id}/reviews', [ReviewController::class, 'apiShow']);
 
 
 
