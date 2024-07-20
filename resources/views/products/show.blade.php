@@ -247,6 +247,8 @@ if (isset($_GET['rate'])) {
 
                 </div>
 
+                @if(count($relatedProducts) > 0)
+
                 <div class="mt-20">
                     <h3 class="font-bold text-2xl">Related products</h3>
                     <div class="h-[20rem]">
@@ -265,6 +267,7 @@ if (isset($_GET['rate'])) {
                         </div>
                     </div>
                 </div>
+                @endif
 
             </div>
         </div>

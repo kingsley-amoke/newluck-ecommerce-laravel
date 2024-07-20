@@ -2,7 +2,7 @@
     <div class='lg:border border-b-slate-400 flex flex-col gap-3 justify-center items-center py-2'>
         <p class='uppercase font-bold text-xl'>Follow us</p>
         <div class='flex gap-10'>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/profile.php?id=100095253978725&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-facebook-f"></i>
 
             </a>
@@ -26,11 +26,11 @@
                 <p class='text-sm text-gray-400 '>Service Hours:</p>
                 <p class='text-sm'>24/7</p>
                 <p class='text-sm text-gray-400 '>Phone:</p>
-                <p class='text-sm'>+2345675w6543</p>
+                <p class='text-sm'>+2349020613026</p>
                 <p class='text-sm text-gray-400 '>Email:</p>
                 <p class='text-sm'>info@newluck.com.ng</p>
                 <p class='text-sm text-gray-400 '>Whatsapp:</p>
-                <p class='text-sm'>+2344635453</p>
+                <p class='text-sm'>+2348069715335</p>
             </div>
         </div>
         <div class='py-2  w-1/2 lg:w-1/5 h-full'>

@@ -61,11 +61,21 @@ class OrderController extends Controller
         return redirect(route('index'));
     }
 
+
     public function destroy($id){
 
         $order = Order::findorFail($id);
 
+        foreach($order->products as $item){
+            $product = Product::findorFail($item['id']);
+
+            $product->quantity -= $item['quantity'];
+
+            $product->save();
+        }
+
         $order->delete();
+
 
         return redirect()->route('orders.index');
     }

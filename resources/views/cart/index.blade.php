@@ -60,12 +60,16 @@ use App\Models\ProductImage;
     @endforeach
 
     <div class="my-10">
+        @if(count($cart) > 0)
         <form action="{{route('orders.create')}}" method="POST">
             @csrf
         <x-primary-button>
             Checkout
         </x-primary-button>
     </form>
+    @else
+    <p class="mx-5">No item in cart. Please add an item and come back later!!</p>
+    @endif
     </div>
 </div>
 @endsection

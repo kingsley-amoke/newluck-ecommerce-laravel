@@ -131,6 +131,8 @@ class ProductController extends Controller
         return redirect()->action([ProductImageController::class, 'index'], ['productId' => $product->id])->with('success', 'Please add images for this product');
     }
 
+  
+
     //apis
 
     public function apiIndex(){

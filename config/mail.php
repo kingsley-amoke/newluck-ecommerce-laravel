@@ -92,6 +92,7 @@ return [
             'mailers' => [
                 'ses',
                 'postmark',
+                
             ],
         ],
 
@@ -109,8 +110,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'klordbravo@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Newluck'),
     ],
 
 ];

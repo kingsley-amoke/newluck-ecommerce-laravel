@@ -18,6 +18,7 @@ foreach($orders as $order){
 <div class="w-full flex flex-col justify-center items-center my-20 px-10 gap-20">
     <h2 class="text-2xl font-cold">All orders</h2>
     <div class="flex flex-col md:flex-row md:flex-wrap gap-10">
+        @if(count($orders) > 0)
         @foreach($orders as $order)
 
             <div class="p-4 border border-slate-500" > 
@@ -40,6 +41,9 @@ foreach($orders as $order){
             
         </div>
         @endforeach
+        @else
+            <p class="mx-5">There is no orders for now!!..</p>
+        @endif
     </div>
 </div>
 @endsection

@@ -91,9 +91,21 @@ $dash = '--';
                 </a>
                 @endif
             </div>
+            
+            <!-- mobile cart -->
+            <div class="-me-2 flex gap-2 items-center sm:hidden">
+                @if(Auth::user())
+                <a href="{{route('cart.index')}}" class="relative">
+                    @if($cart)
+                    <p class="absolute -right-2 -top-2 text-red-400 font-bold text-sm">{{count($cart)}}</p>
+                    @endif
+                    
+                    <i class="fa-solid fa-shopping-cart"></i>
+                </a>
+                @endif
 
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+                <!-- Hamburger -->
+
                 <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
