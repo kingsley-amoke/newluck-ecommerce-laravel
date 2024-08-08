@@ -18,6 +18,8 @@
 
         <script src="{{asset('js/app.js')}}" ></script>
         <script src="https://js.paystack.co/v1/inline.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
 
 
     </head>
