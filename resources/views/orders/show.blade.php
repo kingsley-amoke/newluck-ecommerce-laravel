@@ -34,7 +34,7 @@ $image = ProductImage::where('product_id', $product->id)->get();
 ?>
 
 <div class="border border-slate-500 p-5">
-    <h4 class="font-bold">Product Infofrmation</h4>
+    <h4 class="font-bold">Product Information</h4>
     <div class="w-full flex justify-center items-center my-5">
 
         <img src="/{{$image[0]->image}}" alt={{$product->name}} class="w-32 h-32">
