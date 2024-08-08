@@ -6,10 +6,10 @@
                 <i class="fa-brands fa-facebook-f"></i>
 
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://whatsapp.com/channel/0029Vak4lgWBPzjYCDFQNv3a" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://youtube.com/@newluckglobal" target="_blank" rel="noopener noreferrer">
 
                 <i class="fa-brands fa-youtube"></i>
             </a>
