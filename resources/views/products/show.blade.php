@@ -38,7 +38,7 @@ if (isset($_GET['rate'])) {
             <div class="w-full md:w-1/2 flex flex-col">
                 <div>
                     <div class="flex justify-between items-center">
-                        <h2 class="font-bold text-2xl capitalize">{{$product->name}}</h2>
+                        <h2 class="font-bold text-xl capitalize">{{$product->name}}</h2>
                     </div>
                     <div class="my-5 flex gap-5 items-center">
                         <div class="flex items-center gap-2">
@@ -91,20 +91,20 @@ if (isset($_GET['rate'])) {
                 @endif
             </div>
         </div>
-        <div class="mx-5">
+        {{-- <div class="mx-5">
             <h4 class="font-semibold">Product Specifications</h4>
             <div>
                 here
             </div>
-        </div>
+        </div> --}}
         {{-- <div class="mx-5">specs</div>
         <div class="mx-5">images</div> --}}
         <div id="reviews" class="mx-5">
             <h4 class="font-semibold my-5">Ratings and Reviews</h4>
-            <div class="flex justify-between">
+            <div class="flex flex-col md:flex-row md: justify-between">
 
                 <div>
-                    <h5>Overall Rating</h5>
+                    <h5 >Overall Rating</h5>
                     <div class="flex gap-3 my-5">
                         <p class="font-semibold text-3xl">{{$averageRating}}</p>
                         <div>

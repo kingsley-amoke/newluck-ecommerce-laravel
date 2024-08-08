@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaystackPaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
@@ -78,6 +79,13 @@ Route::get('orders', [OrderController::class, 'index'])->middleware(['auth', 've
 Route::get('orders/{id}', [OrderController::class, 'show'])->middleware('auth', 'verified')->name('orders.show');
 Route::post('cart', [OrderController::class, 'store'])->name('orders.create');
 Route::post('orders/{id}', [OrderController::class, 'destroy'])->middleware('auth', 'verified')->name('orders.delete');
+
+//paystack payment
+
+Route::get('pay', [PaystackPaymentController::class, 'index'])->middleware(['auth', 'verified'])->name('payment.index');
+Route::get('callback', [PaystackPaymentController::class, 'callback'])->middleware(['auth', 'verified'])->name('payment.callback');
+Route::get('success/{paymentId}', [PaystackPaymentController::class, 'success'])->middleware(['auth', 'verified'])->name('payment.success');
+Route::get('failure', [PaystackPaymentController::class, 'failure'])->middleware(['auth', 'verified'])->name('payment.failure');
 
 
 

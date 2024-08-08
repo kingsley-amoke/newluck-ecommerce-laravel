@@ -17,6 +17,8 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
         <script src="{{asset('js/app.js')}}" ></script>
+        <script src="https://js.paystack.co/v1/inline.js"></script>
+
 
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50 min-h-screen flex flex-col">

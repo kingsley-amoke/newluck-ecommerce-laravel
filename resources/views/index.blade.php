@@ -25,7 +25,7 @@ use Illuminate\Support\Number;
   <div class="">
     <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <div class="flex justify-between items-center">
-        <h2 class="text-2xl font-bold tracking-tight">
+        <h2 class="text-xl font-bold tracking-tight">
           Our Newest products
         </h2>
 

@@ -24,14 +24,14 @@
             @endif
           </div>
         </div>
-        <div class="mt-4 flex justify-between">
+        <div class="mt-4 flex justify-between gap-2">
           <div>
-            <h3 class="text-sm font-bold capitalize">{{$name}}</h3>
+            <h3 class="text-[0.7rem] font-bold capitalize">{{$name}}</h3>
             <p class="mt-1 text-sm font-extralight">
               {{$category}}
             </p>
           </div>
-          <p class="text-sm font-medium">{{$price}}</p>
+          <p class="text-[0.6rem] font-medium ">{{$price}}</p>
         </div>
       </a>
     </div>

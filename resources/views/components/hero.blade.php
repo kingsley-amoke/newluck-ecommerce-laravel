@@ -1,7 +1,14 @@
+@php
+
+$images = ['/images/hero/hero.webp', '/images/hero/afcon.webp', '/images/hero/audio.webp'];
+
+@endphp
+
 <section class="my-10 mx-5 w-full flex justify-center items-center">
     <div class="flex flex-col justify-center items-center gap-10 w-full  md:w-2/3 h-full">
         <div class="flex justify-center items-center flex-4">
-            <img src="/images/hero.webp" alt="hero" class="w-full h-full" />
+            {{-- <img src="/images/hero/hero.webp" alt="hero" class="w-full h-full" /> --}}
+            <x-hero-slider :images="$images" />
         </div>
 
         <div class="flex flex-1 flex-col items-center justify-between gap-8 md:flex-row w-4/5">

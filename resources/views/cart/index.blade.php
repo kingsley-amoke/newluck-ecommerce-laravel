@@ -23,7 +23,7 @@ use App\Models\ProductImage;
         <img src="{{$image[0]->image}}" alt="{{$product->name}}" class="w-20 h-20">
         <div class="flex flex-col">
 
-            <p class="font-bold text-2xl">
+            <p class="font-bold lg:text-2xl">
                 {{$product->name}}
                 </p>
                 <p>
@@ -41,12 +41,14 @@ use App\Models\ProductImage;
                     </form>
                     <p>
                         x{{$item->quantity}}
+                        
                         </p>
                         <form action="{{route('cart.increment', $item->id)}}" method="POST">
                             @csrf
                             <button>
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
+                           
                         </form>
                     </div>
 
@@ -58,18 +60,24 @@ use App\Models\ProductImage;
         </div>
     </div>
     @endforeach
-
+   
     <div class="my-10">
         @if(count($cart) > 0)
-        <form action="{{route('orders.create')}}" method="POST">
+        
+        <x-button title="Checkout" to="{{route('payment.index')}}"/>
+       
+        
+        @else
+        <p class="mx-5">No item in cart. Please add an item and come back later!!</p>
+         @endif
+    </div>
+</div>
+
+@endsection
+
+ {{-- <form action="{{route('payment.index')}}" method="POST">
             @csrf
         <x-primary-button>
             Checkout
         </x-primary-button>
-    </form>
-    @else
-    <p class="mx-5">No item in cart. Please add an item and come back later!!</p>
-    @endif
-    </div>
-</div>
-@endsection
+    </form> --}}

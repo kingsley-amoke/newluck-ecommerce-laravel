@@ -13,9 +13,9 @@
 
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/newluckglobalconcept" target="_blank" rel="noopener noreferrer">
 
-                <i class="fa-brands fa-tiktok"></i>
+                <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
     </div>

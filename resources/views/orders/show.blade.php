@@ -47,12 +47,16 @@ $image = ProductImage::where('product_id', $product->id)->get();
 </div>
 
 @endforeach
+@if($order->status === 'pending')
 <form action="{{route('orders.delete', $order->id)}}" method="POST">
     @csrf
     <x-primary-button>
         Complete Order
     </x-primary-button>
 </form>
+@else
+<p class="text-green-500 font-bold">Order is completed</p>
+@endif
 
 </div>
 @endsection

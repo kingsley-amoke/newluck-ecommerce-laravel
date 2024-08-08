@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -20,7 +21,11 @@ class OrderController extends Controller
 
         $orders = Order::orderBy('created_at', 'desc')->get();
 
-        return view('orders.index', ['orders' => $orders]);
+        $pending = Order::orderBy('created_at', 'desc')->where('status', 'pending')->get();
+
+        $completed = Order::orderBy('created_at', 'desc')->where('status', 'completed')->get();
+
+        return view('orders.index', ['all_orders' => $orders, 'completed'=> $completed, 'pending'=>$pending]);
     }
 
     public function show($id){
@@ -33,7 +38,9 @@ class OrderController extends Controller
         return view('orders.show', ['order' => $order]);
     }
 
-    public function store(){
+    public function store($paymentId){
+
+        $payment = Payment::find($paymentId);
 
         $cart = Cart::where('user_id', Auth::user()->id)->get();
 
@@ -55,10 +62,12 @@ class OrderController extends Controller
 
        $order->save();
 
+       $payment->order_id = $order->id;
+       $payment->save();
 
 
 
-        return redirect(route('index'));
+        return redirect(route('payment.success'));
     }
 
 
@@ -74,7 +83,8 @@ class OrderController extends Controller
             $product->save();
         }
 
-        $order->delete();
+        $order->status = "completed";
+        $order->save();
 
 
         return redirect()->route('orders.index');
