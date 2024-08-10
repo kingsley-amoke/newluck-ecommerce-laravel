@@ -2,11 +2,16 @@
 
 use App\Models\Category;
 use App\Models\Cart;
+use App\Models\Order;
 
 $categories = Category::tree()->get()->toTree();
 
-if(Auth::user())
-$cart = Cart::where('user_id', Auth::user()->id)->get();
+if(Auth::user()){
+
+    $cart = Cart::where('user_id', Auth::user()->id)->get();
+    
+    $pending = Order::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->where('status', 'pending')->get();
+}
 
 $dash = '--';
 
@@ -53,6 +58,9 @@ $dash = '--';
                         @if(Auth::user())
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('pending.index')">
+                            {{__('My Orders ')}} <span class="border rounded-full px-1 ml-5">{{count($pending)}}</span>
                         </x-dropdown-link>
 
                         @if(Auth::user()->admin)
@@ -148,6 +156,9 @@ $dash = '--';
                     {{ __('Admin') }}
                 </x-responsive-nav-link>
                 @endif
+                <x-dropdown-link :href="route('pending.index')">
+                    {{__('My Orders ')}} <span class="border rounded-full px-1 ml-5">{{count($pending)}}</span>
+                </x-dropdown-link>
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Edit Profile') }}
                 </x-responsive-nav-link>

@@ -4,14 +4,13 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PendingController;
 use App\Http\Controllers\PaystackPaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Cart;
-use App\Models\Pizza;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -80,13 +79,17 @@ Route::get('orders/{id}', [OrderController::class, 'show'])->middleware('auth', 
 Route::post('cart', [OrderController::class, 'store'])->name('orders.create');
 Route::post('orders/{id}', [OrderController::class, 'destroy'])->middleware('auth', 'verified')->name('orders.delete');
 
+//pending orders
+
+Route::get('pending', [PendingController::class, 'index'])->middleware(['auth', 'verified'])->name('pending.index');
+Route::get('pending/{id}', [PendingController::class, 'show'])->middleware('auth', 'verified')->name('pending.show');
+
 //paystack payment
 
 Route::get('pay', [PaystackPaymentController::class, 'index'])->middleware(['auth', 'verified'])->name('payment.index');
 Route::get('callback', [PaystackPaymentController::class, 'callback'])->middleware(['auth', 'verified'])->name('payment.callback');
 Route::get('success/{paymentId}', [PaystackPaymentController::class, 'success'])->middleware(['auth', 'verified'])->name('payment.success');
 Route::get('failure', [PaystackPaymentController::class, 'failure'])->middleware(['auth', 'verified'])->name('payment.failure');
-
 
 
 
